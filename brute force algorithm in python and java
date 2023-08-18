@@ -1,0 +1,294 @@
+Brute Force Algorithms
+
+  A brute force algorithm solves a problem through exhaustion: it goes through all possible choices until a solution is found.
+  The time complexity of a brute force algorithm is often proportional to the input size.
+  Brute force algorithms are simple and consistent, but very slow.
+
+# pseudocode that prints all divisors of n by brute force
+
+define printDivisors, n
+    for all numbers from 1 to n
+        if the number is a divisor of n
+            print the number
+
+Searching for smallest or largest value using linear search
+Linear search can be used to search for the smallest or largest value in an unsorted list rather than searching for a match. It can do so by keeping track of the largest (or smallest) value and updating as necessary as the algorithm iterates through the dataset.
+
+Create a variable called max_value_index    
+Set max_value_index to the index of the first element of the search list
+  For each element in the search list
+    if element is greater than the element at max_value_index
+      Set max_value_index equal to the index of the element
+return max_value_index
+Linear Search best case
+For a list that contains n items, the best case for a linear search is when the target value is equal to the first element of the list. In such cases, only one comparison is needed. Therefore, the best case performance is O(1).
+
+Linear Search Complexity
+Linear search runs in linear time and makes a maximum of n comparisons, where n is the length of the list. Hence, the computational complexity for linear search is O(N).
+
+The running time increases, at most, linearly with the size of the items present in the list.
+
+Linear Search expressed as a Function
+A linear search can be expressed as a function that compares each item of the passed dataset with the target value until a match is found.
+
+The given pseudocode block demonstrates a function that performs a linear search. The relevant index is returned if the target is found and -1 with a message that a value is not found if it is not.
+
+For each element in the array
+  if element equal target value then
+    return its index
+  if element is not found, return 
+    “Value Not Found” message
+Return value of a linear search
+A function that performs a linear search can return a message of success and the index of the matched value if the search can successfully match the target with an element of the dataset. In the event of a failure, a message as well as -1 is returned as well.
+
+For each element in the array
+  if element equal target value then
+    print success message
+    return its index
+  if element is not found 
+    print Value not found message
+    return -1
+Modification of linear search function
+A linear search can be modified so that all instances in which the target is found are returned. This change can be made by not ‘breaking’ when a match is found.
+
+For each element in the searchList
+  if element equal target value then
+    Add its index to a list of occurrences
+if the list of occurrences is empty
+  raise ValueError
+otherwise
+  return the list occurrences
+Linear search
+Linear search sequentially checks each element of a given list for the target value until a match is found. If no match is found, a linear search would perform the search on all of the items in the list.
+
+For instance, if there are n number of items in a list, and the target value resides in the n-5th position, a linear search will check n-5 items total.
+
+Linear search as a part of complex searching problems
+Despite being a very simple search algorithm, linear search can be used as a subroutine for many complex searching problems. Hence, it is convenient to implement linear search as a function so that it can be reused.
+
+Linear Search Best and Worst Cases
+The best-case performance for the Linear Search algorithm is when the search item appears at the beginning of the list and is O(1). The worst-case performance is when the search item appears at the end of the list or not at all. This would require N comparisons, hence, the worse case is O(N).
+
+Linear Search Average Runtime
+The Linear Search Algorithm performance runtime varies according to the item being searched. On average, this algorithm has a Big-O runtime of O(N), even though the average number of comparisons for a search that runs only halfway through the list is N/2.
+
+Linear Search Runtime
+The Linear Search algorithm has a Big-O (worst case) runtime of O(N). This means that as the input size increases, the speed of the performance decreases linearly. This makes the algorithm not efficient to use for large data inputs.
+
+Linear Search Algorithm Big-O runtime, O(N)
+Throwing Exception in Linear Search
+The linear search function may throw a ValueError with a message when the target value is not found in the search list. Calling the linear search function inside a try block is recommended to catch the ValueError exception in the except block.
+
+def linear_search(lst, match):
+  for idx in range(len(lst)):
+    if lst[idx] == match:
+      return idx
+    else:
+      raise ValueError("{0} not in list".format(match))
+ 
+recipe = ["nori", "tuna", "soy sauce", "sushi rice"]
+ingredient = "avocado"
+try:
+  print(linear_search(recipe, ingredient))
+except ValueError as msg:
+  print("{0}".format(msg))
+Find Maximum Value in Linear Search
+The Linear Search function can be enhanced to find and return the maximum value in a list of numeric elements. This is done by maintaining a variable that is compared to every element and updated when its value is smaller than the current element.
+
+def find_maximum(lst):
+  max = None
+  for el in lst:
+    if max == None or el > max:
+      max = el
+  return max
+test_scores = [88, 93, 75, 100, 80, 67, 71, 92, 90, 83]
+print(find_maximum(test_scores)) # returns 100
+Linear Search Multiple Matches
+A linear search function may have more than one match from the input list. Instead of returning just one index to the matched element, we return a list of indices. Every time we encounter a match, we add the index to the list.
+
+def linear_search(lst, match):
+  matches = []
+  for idx in range(len(lst)):
+    if lst[idx] == match:
+      matches.append(idx)
+  if matches:
+    return matches
+  else:
+    raise ValueError("{0} not in list".format(match))
+    
+scores = [55, 65, 32, 40, 55]
+print(linear_search(scores, 55))
+Raise Error in Linear Search
+A Linear Search function accepts two parameters:
+
+1) input list to search from
+2) target element to search for in the input list
+If the target element is found in the list, the function returns the element index. If it is not found, the function raises an error. When implementing
+in Python, use the raise keyword with ValueError().
+
+
+In JAVA
+
+
+
+
+
+
+
+
+
+
+
+
+Brute force approach
+A brute force approach is an approach that finds all the possible solutions to find a satisfactory solution to a given problem. The brute force algorithm tries out all the possibilities till a satisfactory solution is not found.
+
+Such an algorithm can be of two types:
+
+Optimizing: In this case, the best solution is found. To find the best solution, it may either find all the possible solutions to find the best solution or if the value of the best solution is known, it stops finding when the best solution is found. For example: Finding the best path for the travelling salesman problem. Here best path means that travelling all the cities and the cost of travelling should be minimum.
+Satisficing: It stops finding the solution as soon as the satisfactory solution is found. Or example, finding the travelling salesman path which is within 10% of optimal.
+Often Brute force algorithms require exponential time. Various heuristics and optimization can be used:
+Heuristic: A rule of thumb that helps you to decide which possibilities we should look at first.
+Optimization: A certain possibilities are eliminated without exploring all of them.
+Let's understand the brute force search through an example.
+
+
+
+Suppose we have converted the problem in the form of the tree shown as below:
+
+Brute force approach
+Brute force search considers each and every state of a tree, and the state is represented in the form of a node. As far as the starting position is concerned, we have two choices, i.e., A state and B state. We can either generate state A or state B. In the case of B state, we have two states, i.e., state E and F.
+
+In the case of brute force search, each state is considered one by one. As we can observe in the above tree that the brute force search takes 12 steps to find the solution.
+
+On the other hand, backtracking, which uses Depth-First search, considers the below states only when the state provides a feasible solution. Consider the above tree, start from the root node, then move to node A and then node C. If node C does not provide the feasible solution, then there is no point in considering the states G and H. We backtrack from node C to node A. Then, we move from node A to node D. Since node D does not provide the feasible solution, we discard this state and backtrack from node D to node A.
+
+We move to node B, then we move from node B to node E. We move from node E to node K; Since k is a solution, so it takes 10 steps to find the solution. In this way, we eliminate a greater number of states in a single iteration. Therefore, we can say that backtracking is faster and more efficient than the brute force approach.
+
+Advantages of a brute-force algorithm
+The following are the advantages of the brute-force algorithm:
+
+This algorithm finds all the possible solutions, and it also guarantees that it finds the correct solution to a problem.
+This type of algorithm is applicable to a wide range of domains.
+It is mainly used for solving simpler and small problems.
+It can be considered a comparison benchmark to solve a simple problem and does not require any particular domain knowledge.
+Disadvantages of a brute-force algorithm
+The following are the disadvantages of the brute-force algorithm:
+
+It is an inefficient algorithm as it requires solving each and every state.
+It is a very slow algorithm to find the correct solution as it solves each state without considering whether the solution is feasible or not.
+The brute force algorithm is neither constructive nor creative as compared to other algorithms.
+
+
+
+Problem Statement
+We will assume text (where we have to search) is an array of  n characters. Let’s denote the text by T[1..n]. String to be searched is called pattern and is represented by an array P[1..m] where m ≤ n.
+
+We need to find indexes in given text T where the given pattern P occurs.
+
+Following picture will explain it better:
+
+
+
+Figure 1: Here, the blue coloured characters in the text matched with the pattern. The program should return 3, i.e. the index of a in text.
+ 
+
+Brute Force Approach
+Introduction
+The Brute Force algorithm compares the pattern to the text  taking one character at a time.
+
+Advertisements
+
+REPORT THIS AD
+
+For example, let’s suppose we need to find  “abba” in “abcabaabcabac”.
+
+We will start with first “a” in “abcabaabcabac”.
+
+Pattern has “a”; Text has “a”. Now try to match second character of pattern to second character of the text.
+
+Pattern has “b”; Text has “b”. Very well, now let us try to match third character of pattern with third character of the text.
+
+Pattern has “b”; Text has “c”. Ah, failed.
+
+Let’s try to see the same thing with graphics.
+
+brute.png
+
+brute (1).png
+
+brute (2).png
+
+Now, We will start with second character “b” in “abcabaabcabac”.
+
+Pattern has “a”; Text has “b”. This is a no go at the very first character of the.
+
+brute (3).png
+
+Now, We will start with third character “c” in “abcabaabcabac”.
+
+Pattern has “a”; Text has “c”. This is a no go at the very first character of the pattern.
+
+brute (4).png
+
+Similarly, we will go on matching until our characters in text are exhausted or we find a match.
+
+
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class StringMatchBruteForce {
+
+    public static void main (String args []){
+        System.out.println("========String matcher Brute Force Approach===========");
+        String text = "abcabbabbaabac";
+        String pattern = "abba";
+        long initialTime = System.nanoTime();
+        List<Integer> matchedIndexes = bruteForceStringMatcher(text, pattern);
+        long finalTime = System.nanoTime();
+        for(Integer matchedIndex : matchedIndexes){
+            System.out.println("Pattern found at "+matchedIndex);
+        }
+
+        if(matchedIndexes.size() == 0)
+            System.out.println("Pattern not found");
+
+        System.out.println("Time taken for matching "+(finalTime – initialTime));
+    }
+
+
+
+    public static List<Integer> bruteForceStringMatcher(String text, String pattern){
+
+        char[] textArray = text.toCharArray();
+        char[] patternArray = pattern.toCharArray();
+
+        int textLength = textArray.length;
+        int patternLength = patternArray.length;
+
+        List<Integer> matchedIndexes = new ArrayList<>();
+
+        int textIndex = 0;
+
+
+        for(textIndex = 0; textIndex < textLength; textIndex++){
+            int textIndexLocal = textIndex;
+            Boolean match = true;
+            int matchedIndex = textIndex;
+            for(int patternIndex = 0; patternIndex < patternLength; patternIndex++){
+                if(textArray[textIndexLocal] != patternArray[patternIndex]) {
+                    match = false;
+                    break;
+                }
+                textIndexLocal = textIndexLocal + 1;
+            }
+            if(match)
+                matchedIndexes.add(matchedIndex);
+        }
+        return matchedIndexes;
+    }
+
+}
